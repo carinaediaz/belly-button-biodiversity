@@ -17,7 +17,7 @@ init();
 function optionChanged(newSample) {
   buildMetadata(newSample);
   buildCharts(newSample);
-};
+}
 
 function buildMetadata(sample) {
   d3.json("samples.json").then((data) => {
@@ -31,5 +31,5 @@ function buildMetadata(sample) {
     Object.entries(result).forEach(([key, value]) => {
       PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
-  });
-};
+  })
+}
