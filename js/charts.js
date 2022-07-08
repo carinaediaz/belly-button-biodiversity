@@ -64,7 +64,7 @@ function buildCharts(sample) {
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
       var metadata = data.metadata;
       var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
-    //  5. Create a variable that holds the first sample in the array.
+    // 5. Create a variable that holds the first sample in the array.
       var result = resultSamples[0];
     // 2. Create a variable that holds the first sample in the metadata array.
       var array = resultArray[0];
@@ -86,13 +86,23 @@ function buildCharts(sample) {
         x: values.slice(0,10).reverse(),
         y: yticks,
         type: "bar",
-        orientation: "h",
         text: labels.slice(0,10).reverse(),
+        orientation: "h",
+        marker: {
+          color: "DarkRed"
+        }
       }
     ];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top 10 Bacteria Cultures Found"
+      title: "Top 10 Bacteria Cultures Found",
+      paper_bgcolor: "WhiteSmoke",
+      plot_bgcolor: "WhiteSmoke",
+      textfont: {
+        family: 'sans serif',
+        size: 18,
+        color: '#1f77b4'
+      },
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot ("bar", barData, barLayout)
@@ -103,12 +113,12 @@ function buildCharts(sample) {
         x: ids,
         y: values,
         mode: "markers",
+        text: labels,
         marker: {
           size: values,
           color: ids,
-          colorscale: 'YlGnBu',
-        },
-        text: labels
+          colorscale: 'YlOrRd',
+        }
       }
    
     ];
@@ -118,7 +128,9 @@ function buildCharts(sample) {
       title: "Bacteria Cultures Per Sample",
       xaxis: {title: "OTU ID"},
       margin: {l:50, r: 50, b:100, t:100},
-      hovermode: "closest"
+      hovermode: "closest",
+      paper_bgcolor: "WhiteSmoke",
+      plot_bgcolor: "WhiteSmoke"
     };
 
     // 3. Use Plotly to plot the data with the layout.
@@ -147,9 +159,10 @@ function buildCharts(sample) {
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-      width: 500,
-      height: 500,
-      margin: {l:50, r:50, t:50, b:50}
+      width: 450,
+      height: 450,
+      paper_bgcolor: "WhiteSmoke",
+      plot_bgcolor: "WhiteSmoke"
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
